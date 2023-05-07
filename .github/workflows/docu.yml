@@ -2,8 +2,8 @@ name: Save documentation
 
 on:
   push:
-    tags:        
-      - '*'         
+    tags:
+      - '*'
 
 jobs:
   test:
@@ -17,12 +17,12 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.8'
-        
+
     uses: mattnotmitt/doxygen-action@v1.9.5
     with:
         working-directory: './'
         doxyfile-path: 'html'
-          
+
     - uses: actions/upload-artifact@v3
       with:
         name: docu-artifact
