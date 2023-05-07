@@ -18,14 +18,12 @@ jobs:
       with:
         python-version: '3.8'
         
-    - name: Generate Doxygen documentation
-      uses: doxygen/docker-action@v1
-      with:
-        version: '1.9.2'
-        input: './'
-        output: 'html/'
-      
+    uses: mattnotmitt/doxygen-action@v1.9.5
+    with:
+        working-directory: './'
+        doxyfile-path: 'html'
+          
     - uses: actions/upload-artifact@v3
       with:
-        name: html
-        path: docus
+        name: docu-artifact
+        path: html
