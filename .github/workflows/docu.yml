@@ -1,0 +1,27 @@
+name: Save documentation
+
+on:
+  push:
+    tags:        
+      - '*'         
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - run: mkdir -p docu
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+        
+    - name: Install dependencies
+      run: apt install doxygen && doxygen Doxyfile
+      
+    - uses: actions/upload-artifact@v3
+      with:
+        name: html
+        path: docu
