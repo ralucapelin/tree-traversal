@@ -12,16 +12,20 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - run: mkdir -p docu
+    - run: mkdir -p html
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.8'
         
-    - name: Install dependencies
-      run: apt install doxygen && doxygen Doxyfile
+    - name: Generate Doxygen documentation
+      uses: doxygen/docker-action@v1
+      with:
+        version: '1.9.2'
+        input: './'
+        output: 'html/'
       
     - uses: actions/upload-artifact@v3
       with:
         name: html
-        path: docu
+        path: docus
