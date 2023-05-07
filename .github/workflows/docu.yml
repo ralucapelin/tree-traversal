@@ -1,8 +1,9 @@
 name: Save documentation
 
 on:
-  label:
-    types: [created]
+  push:
+    tags:        
+      - '*'         
 
 jobs:
   test:
